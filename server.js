@@ -103,5 +103,3 @@ app.delete('/todos/categories/delete', async (req, res) => {
 });
 
 app.listen(3001, () => console.log('listening...'));
-// require('./update');
-// require('./delete');
