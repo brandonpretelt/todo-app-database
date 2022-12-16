@@ -1,17 +1,20 @@
+const { default: mongoose } = require('mongoose');
+
 const onSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     let todoContent = data.get('todoContent');
     let category = data.get('category');
-    const done = false;
+    let id;
 
+    console.log(todoContent);
     // const JSONData = Object.fromEntries(data.entries());
     //document.querySelector('.output').innerHTML = content;
     fetch('/todos/add', {
         method: 'POST',
         body: JSON.stringify({
             todoContent: todoContent,
-            done,
+            done: false,
             category: category
         }),
         headers: {
@@ -20,11 +23,13 @@ const onSubmit = (event) => {
     })
         .then((response) => response.json())
         .then((data) => {
+            data.newTodo.id = ++id;
             data.newTodo.todoContent = todoContent;
             data.newTodo.category = category;
-            console.log(data.newTodo);
+            console.log(data);
         })
         .catch((e) => console.log(e.message, ' but whhyyyy'));
+    window.location = `/single.html?id=${data.id}`;
 };
 
 document.querySelector('form').addEventListener('submit', onSubmit);

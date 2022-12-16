@@ -6,15 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New learning...</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-    <a href="add.html">add todo</a>
+    <main>
+        <form>
+            <input type="text" name="todoContent" placeholder="add todo..." />
+            <input type="checkbox" name="done" checked>
+            <!-- replace with select -->
+            <input type="text" name="category" placeholder="category">
+            <button data-btn="add-todos">Submit</button>
+        </form>
+        <div class="todos-container">
+            <ul class="todos"></ul>
+        </div>
 
-    <div class="todos-container">
-        <ul class="todos"></ul>
-    </div>
+
+
+    </main>
+    <script src="js/createTodo.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/test.js"></script>
 </body>
 
 </html>
