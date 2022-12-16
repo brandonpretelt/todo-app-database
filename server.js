@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/client/'));
 
 app.use(
     bodyParser.urlencoded({
-        extended: true
+        extended: false
     })
 );
 app.use(bodyParser.json());
@@ -35,20 +35,21 @@ app.get('/todos', async (req, res) => {
 });
 
 app.get('/todos/name', async (req, res) => {
-    const todo = await Todo.findById(req.query.id);
-    res.send(todo);
+    const todo = await Todo.findOne(req.query.todoContent);
+    res.json({ todo });
 });
 
 app.post('/todos/add', async (req, res) => {
     const newTodo = new Todo({
-        todoContent: req.query.todoContent,
-        done: req.query.done,
-        category: req.query.category
+        todoContent: req.body.todoContent,
+        done: req.body.done,
+        category: req.body.category
     });
 
+    console.log(req.body);
     await newTodo.save();
-    // console.log(todoContent);
-    res.send(newTodo);
+    // console.log(todosContent);
+    res.json({ newTodo });
 });
 
 app.put('/todos/edit', async (req, res) => {
