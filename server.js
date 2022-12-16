@@ -16,16 +16,22 @@ mongoose
     .then((e) => console.log('MongoDB Ready!'))
     .catch(console.error);
 
+app.use(express.static(__dirname + '/client/'));
+
 app.use(
     bodyParser.urlencoded({
-        extended: false
+        extended: true
     })
 );
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+    res.sendFile('index.html');
+});
+
 app.get('/todos', async (req, res) => {
     const todos = await Todo.find();
-    res.send(todos);
+    res.json({ todos });
 });
 
 app.get('/todos/name', async (req, res) => {
@@ -33,7 +39,7 @@ app.get('/todos/name', async (req, res) => {
     res.send(todo);
 });
 
-app.post('/todos', async (req, res) => {
+app.post('/todos/add', async (req, res) => {
     const newTodo = new Todo({
         todoContent: req.query.todoContent,
         done: req.query.done,
@@ -41,6 +47,7 @@ app.post('/todos', async (req, res) => {
     });
 
     await newTodo.save();
+    // console.log(todoContent);
     res.send(newTodo);
 });
 
