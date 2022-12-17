@@ -76,6 +76,7 @@ app.get('/:id', async (req, res) => {
 app.post('/', async (req, res) => {
     const newTodo = new Todo({
         todoContent: req.body.todoContent,
+        todoDescription: req.body.todoDescription,
         done: req.body.done,
         category: req.body.category
     });

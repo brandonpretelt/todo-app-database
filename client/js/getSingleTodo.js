@@ -6,8 +6,8 @@ const getTodo = async (id) => {
     const getTodo = await fetch(`${URL}/${id}`);
     const getTodoData = await getTodo.json();
     console.log(getTodoData);
-    const output = document.querySelector('.output');
-    output.textContent = getTodoData.todoContent;
+    const todoTitle = document.querySelector('.todo-title');
+    todoTitle.textContent = getTodoData.todoContent;
 };
 
 const grabId = async (id) => {
@@ -26,12 +26,14 @@ const renderCategories = async (id) => {
         'https://todo-app-3760.herokuapp.com' || 'http://localhost:3001';
     const getTodo = await fetch(`${URL}/${id}`);
     const getTodoData = await getTodo.json();
-    const categories = getTodoData.category;
+    const categories = getTodoData.category.join(',').split(',');
+    console.log(categories);
     categories.forEach((item) => {
-        const output = document.querySelector('.output');
+        const todoCategory = document.querySelector('.todo-category');
         if (item === '') {
             return;
-        } else if (item !== '') output.textContent += ` ${item}`;
+        } else if (item !== '')
+            todoCategory.innerHTML += `<div class="category-item"> ${item}</div>`;
     });
 };
 
