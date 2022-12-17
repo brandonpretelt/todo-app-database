@@ -41,9 +41,10 @@ async function getTodoId() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const URL = 'https://todo-app-3760.herokuapp.com';
     const todosList = document.querySelector('.todos');
     const todosContainer = document.querySelector('.todos-container');
-    const response = await fetch('http://localhost:3001/');
+    const response = await fetch(URL);
     const data = await response.json();
 
     data.forEach((item) => {
