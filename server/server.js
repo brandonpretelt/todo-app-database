@@ -80,7 +80,7 @@ app.post('/', async (req, res) => {
         category: req.body.category,
         todoDescription: req.body.todoDescription
     });
-    console.log(req.body[0].todoDescription);
+    console.log(req.body);
     await newTodo.save();
 
     res.json(newTodo);
