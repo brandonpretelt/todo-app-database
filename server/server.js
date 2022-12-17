@@ -70,15 +70,18 @@ app.get('/todos', async (req, res) => {
 app.get('/:id', async (req, res) => {
     const id = req.params.id;
     const todo = await Todo.findById(id);
+    console.log(todo, '<-- blah');
     res.json(todo);
 });
 
 app.post('/', async (req, res) => {
+    let { todoContent, done, category, todoDescription } = req.body;
+    console.log(todoContent, done, category, todoDescription);
     const newTodo = new Todo({
         todoContent: req.body.todoContent,
         done: req.body.done,
         category: req.body.category,
-        todoDescription: req.body.todoDescription
+        todoDescription
     });
     console.log(req.body);
     await newTodo.save();

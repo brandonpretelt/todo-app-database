@@ -6,7 +6,8 @@ const Todo = new Schema({
         type: Boolean,
         default: false
     },
-    category: [String]
+    category: [String],
+    todoDescription: String
 });
 
 module.exports = model('todo', Todo);
