@@ -1,6 +1,7 @@
 const onSubmit = (event) => {
     event.preventDefault();
-    const URL = 'http://localhost:3001';
+    const URL =
+        'https://todo-app-3760.herokuapp.com/' || 'http://localhost:3001';
     const data = new FormData(event.target);
     let todoContent = data.get('todoContent');
     let category = data.get('category');
@@ -27,7 +28,7 @@ const onSubmit = (event) => {
             console.log(data);
         })
         .catch((e) => console.log(e.message, ' but whhyyyy'));
-    // setTimeout(() => window.location.reload(), 300);
+    setTimeout(() => window.location.reload(), 300);
 };
 
 document.querySelector('form').addEventListener('submit', onSubmit);
