@@ -24,9 +24,11 @@ const onSubmit = (event) => {
     })
         .then((response) => response.json())
         .then((data) => {
-            data.todoContent = todoContent;
-            data.category = category;
-            data.todoDescrtiption = description;
+            let { todoContent, category, todoDescription } = data;
+            todoContent = todoContent;
+            category = category;
+            todoDescription = description;
+            console.log(data.todoDescription);
         })
         .catch((e) => console.log(e.message, ' but whhyyyy'));
     setTimeout(() => window.location.reload(), 300);
