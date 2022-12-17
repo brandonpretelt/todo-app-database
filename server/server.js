@@ -7,10 +7,6 @@ const path = require('path');
 const Todo = require('./model/todos');
 
 require('dotenv').config();
-/* 
-const uri = `mongodb+srv://${process.env.ATLAS_UNAME || ATLAS_UNAME}:${
-    process.env.ATLAS_KEY || ATLAS_KEY
-}@cluster0.wnamaja.mongodb.net/?retryWrites=true&w=majority`; */
 
 mongoose
     .connect(process.env.MONGO_URI, {
