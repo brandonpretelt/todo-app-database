@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+}
+
+main {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    margin-bottom: 2em;
+}
+
+#edit-form {
+    margin: 0;
+}
+
+.todos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.todos-container li {
+    border-radius: 4px;
+    list-style: none;
+    font-size: 1.5rem;
+    padding: 0.5em;
+    margin: 0.25em;
+    background-color: green;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+div {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+div small {
+    background-color: yellow;
+    border-radius: 6px;
+    padding: 0.5em;
+    font-size: 0.9rem;
+    width: min-content;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
