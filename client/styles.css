@@ -27,6 +27,10 @@ form {
     background-color: hsl(157, 80%, 80%);
 }
 
+form input {
+    margin-block-end: 1em;
+}
+
 form input,
 form button {
     font-size: 1.6rem;

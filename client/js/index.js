@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             todosList.innerHTML += `
             <li data-get-todo>
                 <div>
-                    <a href="single.html?id=${item._id}">
+                    <a href="todo.html?id=${item._id}">
                         ${item.todoContent}
                     </a>
                 </div>
