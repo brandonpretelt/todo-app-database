@@ -102,9 +102,11 @@ app.post('/', async (req, res) => {
     res.json(newTodo);
 }); */
 
-app.put('/todos/edit', async (req, res) => {
+app.put('/:id', async (req, res) => {
+    let id = req.params.id;
+    // await Todo.findByIdAndUpdate({id}, {$set:{ }})
     // const todo = await Todo.findById(req.query.id);
-    console.log(req.body);
+
     // todo.todoContent = req.query.newContent;
     // const result = await todo.save();
     res.json({ messsage: 'cool' });
