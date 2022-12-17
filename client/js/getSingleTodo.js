@@ -48,7 +48,7 @@ const deleteItem = async (id) => {
             console.log(data);
         })
         .catch((e) => console.log(e.message, ' but whhyyyy'));
-    window.location = '/';
+    setTimeout(() => (window.location = '/'), 250);
 };
 
 getTodo(id[1]);
