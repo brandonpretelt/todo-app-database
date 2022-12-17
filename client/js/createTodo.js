@@ -1,5 +1,3 @@
-const { default: mongoose } = require('mongoose');
-
 const onSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
@@ -10,7 +8,7 @@ const onSubmit = (event) => {
     console.log(todoContent);
     // const JSONData = Object.fromEntries(data.entries());
     //document.querySelector('.output').innerHTML = content;
-    fetch('/todos/add', {
+    fetch('http://localhost:3001/', {
         method: 'POST',
         body: JSON.stringify({
             todoContent: todoContent,
@@ -23,13 +21,12 @@ const onSubmit = (event) => {
     })
         .then((response) => response.json())
         .then((data) => {
-            data.newTodo.id = ++id;
             data.newTodo.todoContent = todoContent;
             data.newTodo.category = category;
             console.log(data);
         })
         .catch((e) => console.log(e.message, ' but whhyyyy'));
-    window.location = `/single.html?id=${data.id}`;
+    // window.location = `/single.html?id=${data.id}`;
 };
 
 document.querySelector('form').addEventListener('submit', onSubmit);

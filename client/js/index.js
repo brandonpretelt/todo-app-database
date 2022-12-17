@@ -43,17 +43,18 @@ async function getTodoId() {
 document.addEventListener('DOMContentLoaded', async () => {
     const todosList = document.querySelector('.todos');
     const todosContainer = document.querySelector('.todos-container');
-    const response = await fetch('/todos');
+    const response = await fetch('http://localhost:3001/');
     const data = await response.json();
 
-    console.log(data, '<---');
     data.forEach((item) => {
         todosList.innerHTML += `
         <li data-get-todo>
-            <a href="/single.html?id=${item._id}">
+        <div>
+            <a href="single.html?id=${item._id}">
                 ${item.todoContent}
             </a>
-            <button id="edit">Edit Content</button>
+           
+        </div>
         </li>`;
     });
 });
