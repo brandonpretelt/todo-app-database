@@ -27,6 +27,8 @@ app.use((req, res, next) => {
         'Access-Control-Allow-Methods',
         'GET, POST, OPTIONS, PUT, DELETE'
     );
+
+    res.header('Allow', 'GET', 'POST', 'OPTIONS', 'PUT', 'DELETE');
     res.header(
         'Access-Control-Allow-Headers',
         'Origin, X-Requested-With, Content-Type, Accept'
@@ -93,11 +95,11 @@ app.put('/todos/edit', async (req, res) => {
     res.json({ messsage: 'cool' });
 });
 
-app.delete('/todos/delete', async (req, res) => {
-    let id = req.query.id;
-    await Todo.deleteOne({ id });
-    const allTodos = await Todo.find();
-    res.send(allTodos);
+app.delete('/:id', async (req, res) => {
+    let id = req.params.id;
+    await Todo.findOneAndDelete({ id });
+    // const allTodos = await Todo.find();
+    res.redirect('/');
 });
 
 app.get('/todos/categories', async (req, res) => {

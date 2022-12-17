@@ -1,14 +1,15 @@
 const onSubmit = (event) => {
     event.preventDefault();
+    const URL =
+        'https://todo-app-3760.herokuapp.com' || 'http://localhost:3001';
     const data = new FormData(event.target);
     let todoContent = data.get('todoContent');
     let category = data.get('category');
-    let id;
-
+    console.log(data);
     console.log(todoContent);
     // const JSONData = Object.fromEntries(data.entries());
     //document.querySelector('.output').innerHTML = content;
-    fetch('http://localhost:3001/', {
+    fetch(`${URL}/`, {
         method: 'POST',
         body: JSON.stringify({
             todoContent: todoContent,
@@ -21,12 +22,11 @@ const onSubmit = (event) => {
     })
         .then((response) => response.json())
         .then((data) => {
-            data.newTodo.todoContent = todoContent;
-            data.newTodo.category = category;
-            console.log(data);
+            data.todoContent = todoContent;
+            data.category = category;
         })
         .catch((e) => console.log(e.message, ' but whhyyyy'));
-    // window.location = `/single.html?id=${data.id}`;
+    setTimeout(() => window.location.reload(), 300);
 };
 
 document.querySelector('form').addEventListener('submit', onSubmit);
