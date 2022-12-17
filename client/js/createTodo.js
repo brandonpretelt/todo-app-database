@@ -5,7 +5,7 @@ const onSubmit = (event) => {
     const data = new FormData(event.target);
     let todoContent = data.get('todoContent');
     let category = data.get('category');
-    let descrtiption = data.get('description');
+    let description = data.get('description');
     console.log(data);
     console.log(todoContent);
     // const JSONData = Object.fromEntries(data.entries());
@@ -16,7 +16,7 @@ const onSubmit = (event) => {
             todoContent: todoContent,
             done: false,
             category: category,
-            todoDescrtiption: descrtiption
+            todoDescription: description
         }),
         headers: {
             'Content-Type': 'application/json'
