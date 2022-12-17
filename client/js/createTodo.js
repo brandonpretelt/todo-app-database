@@ -5,18 +5,16 @@ const onSubmit = (event) => {
     const data = new FormData(event.target);
     let todoContent = data.get('todoContent');
     let category = data.get('category');
-    let description = data.get('description');
-    console.log(data);
-    console.log(todoContent);
-    // const JSONData = Object.fromEntries(data.entries());
-    //document.querySelector('.output').innerHTML = content;
+    let todoDescription = data.get('todoDescription');
+
+    console.log(todoDescription);
     fetch(`${URL}/`, {
         method: 'POST',
         body: JSON.stringify({
             todoContent: todoContent,
             done: false,
             category: category,
-            todoDescription: description
+            todoDescription: todoDescription
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -24,14 +22,13 @@ const onSubmit = (event) => {
     })
         .then((response) => response.json())
         .then((data) => {
-            let { todoContent, category, todoDescription } = data;
-            todoContent = todoContent;
-            category = category;
-            todoDescription = description;
-            console.log(data.todoDescription);
+            data.todoContent = todoContent;
+            data.category = category;
+            data.todoDescription = todoDescription;
+            console.log(data);
         })
         .catch((e) => console.log(e.message, ' but whhyyyy'));
-    setTimeout(() => window.location.reload(), 300);
+    // setTimeout(() => window.location.reload(), 300);
 };
 
 document.querySelector('form').addEventListener('submit', onSubmit);

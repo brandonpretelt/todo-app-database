@@ -75,12 +75,25 @@ app.get('/:id', async (req, res) => {
 
 app.post('/', async (req, res) => {
     const newTodo = new Todo({
+        todoContent: req.body[0].todoContent,
+        done: req.body[0].done,
+        category: req.body[0].category,
+        todoDescription: req.body[0].todoDescription
+    });
+    console.log(req.body[0].todoDescription);
+    await newTodo.save();
+
+    res.json(newTodo);
+});
+
+app.post('/', async (req, res) => {
+    const newTodo = new Todo({
         todoContent: req.body.todoContent,
         todoDescription: req.body.todoDescription,
         done: req.body.done,
         category: req.body.category
     });
-
+    console.log(req.body);
     await newTodo.save();
     // console.log(todosContent);
     res.json(newTodo);

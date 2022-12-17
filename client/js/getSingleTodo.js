@@ -7,7 +7,9 @@ const getTodo = async (id) => {
     const getTodoData = await getTodo.json();
     console.log(getTodoData);
     const todoTitle = document.querySelector('.todo-title');
+    const todoDescription = document.querySelector('.description');
     todoTitle.textContent = getTodoData.todoContent;
+    todoDescription.textContent = getTodoData.todoDescription;
 };
 
 const grabId = async (id) => {
