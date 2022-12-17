@@ -36,6 +36,7 @@ const renderCategories = async (id) => {
 };
 
 const deleteItem = async (id) => {
+    const URL = 'https://todo-app-3760.herokuapp.com';
     await fetch(`${URL}/${id}`, {
         method: 'DELETE',
         headers: {
@@ -51,6 +52,6 @@ const deleteItem = async (id) => {
 
 getTodo(id[1]);
 renderCategories(id[1]);
-document.querySelector('.delete').addEventListener('click', () => {
-    deleteItem(id[1]);
-});
+document
+    .querySelector('.delete')
+    .addEventListener('click', () => deleteItem(id[1]));
