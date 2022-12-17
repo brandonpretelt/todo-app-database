@@ -75,10 +75,10 @@ app.get('/:id', async (req, res) => {
 
 app.post('/', async (req, res) => {
     const newTodo = new Todo({
-        todoContent: req.body[0].todoContent,
-        done: req.body[0].done,
-        category: req.body[0].category,
-        todoDescription: req.body[0].todoDescription
+        todoContent: req.body.todoContent,
+        done: req.body.done,
+        category: req.body.category,
+        todoDescription: req.body.todoDescription
     });
     console.log(req.body[0].todoDescription);
     await newTodo.save();
