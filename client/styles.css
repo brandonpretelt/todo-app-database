@@ -23,8 +23,15 @@ form {
     padding: 2em;
     border-radius: 4px;
     display: flex;
+    width: 100vw;
     flex-flow: column nowrap;
     background-color: hsl(157, 80%, 80%);
+}
+
+@media screen and (min-width: 900px) {
+    form {
+        width: auto;
+    }
 }
 
 form input {
@@ -62,8 +69,8 @@ h3 {
     /* flex-direction: column; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 50vw;
-
+    grid-auto-flow: row;
+    place-items: center;
 }
 
 a {

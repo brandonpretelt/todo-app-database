@@ -13,7 +13,7 @@ const onSubmit = (event) => {
         body: JSON.stringify({
             todoContent: todoContent,
             done: false,
-            category: category,
+            category: [category],
             todoDescription: todoDescription
         }),
         headers: {
@@ -23,12 +23,19 @@ const onSubmit = (event) => {
         .then((response) => response.json())
         .then((data) => {
             data.todoContent = todoContent;
-            data.category = category;
+            data.category = [category];
             data.todoDescription = todoDescription;
-            console.log(data);
+            console.log(typeof data.category);
+            const saved = JSON.parse(localStorage.getItem('category'))
+                ? JSON.parse(localStorage.getItem('category'))
+                : [];
+            let categoryArr = [...saved, data.category.join('')];
+            localStorage.setItem('category', JSON.stringify(categoryArr));
         })
         .catch((e) => console.log(e.message, ' but whhyyyy'));
-    // setTimeout(() => window.location.reload(), 300);
+
+    // setTimeout(() => window.location.reload(), 350);
+    setTimeout(() => (window.location = '/client/'), 400);
 };
 
 document.querySelector('form').addEventListener('submit', onSubmit);

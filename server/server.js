@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const { ObjectId } = require('mongodb');
 const cors = require('cors');
 const path = require('path');
 const Todo = require('./model/todos');
+const { log } = require('console');
 
 require('dotenv').config();
 
@@ -12,7 +14,7 @@ mongoose
     .connect(process.env.MONGO_URI, {
         useNewUrlParser: true
     })
-    .then((e) => console.log('MongoDB Ready!'))
+    .then(console.log('MongoDB Ready!'))
     .catch(console.error);
 
 app.use(
@@ -43,7 +45,7 @@ app.use(express.static(path.join(__dirname + 'public')));
 
 app.use(
     bodyParser.urlencoded({
-        extended: false
+        extended: true
     })
 );
 app.use(bodyParser.json());
@@ -54,6 +56,7 @@ app.use(bodyParser.json());
 
 app.get('/', async (req, res) => {
     const todos = await Todo.find();
+
     res.json(todos);
 });
 
@@ -77,6 +80,7 @@ app.get('/:id', async (req, res) => {
 app.post('/', async (req, res) => {
     let { todoContent, done, category, todoDescription } = req.body;
     console.log(todoContent, done, category, todoDescription);
+
     const newTodo = new Todo({
         todoContent: req.body.todoContent,
         done: req.body.done,
@@ -88,19 +92,6 @@ app.post('/', async (req, res) => {
 
     res.json(newTodo);
 });
-
-/* app.post('/', async (req, res) => {
-    const newTodo = new Todo({
-        todoContent: req.body.todoContent,
-        todoDescription: req.body.todoDescription,
-        done: req.body.done,
-        category: req.body.category
-    });
-    console.log(req.body);
-    await newTodo.save();
-    // console.log(todosContent);
-    res.json(newTodo);
-}); */
 
 app.put('/:id', async (req, res) => {
     let id = req.params.id;
@@ -114,9 +105,8 @@ app.put('/:id', async (req, res) => {
 
 app.delete('/:id', async (req, res) => {
     let id = req.params.id;
-    await Todo.findOneAndDelete({ id });
-    // const allTodos = await Todo.find();
-    res.redirect('/');
+    await Todo.findByIdAndRemove({ _id: ObjectId(id) });
+    res.json(await Todo.find({}));
 });
 
 app.get('/todos/categories', async (req, res) => {

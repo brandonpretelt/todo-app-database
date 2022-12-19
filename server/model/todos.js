@@ -1,12 +1,12 @@
-const { model, Schema, default: mongoose } = require('mongoose');
+const { model, mongoose } = require('mongoose');
 
-const Todo = new Schema({
+const Todo = new mongoose.Schema({
     todoContent: String,
     done: {
         type: Boolean,
         default: false
     },
-    category: [String],
+    category: [],
     todoDescription: String
 });
 
