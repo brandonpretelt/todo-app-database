@@ -31,7 +31,9 @@ if (editForm) {
 const deleteItem = async (id) => {
     let server = 'https://todo-app-3760.herokuapp.com';
     let localhost = 'http://localhost:3001';
-    const URL = localhost;
+    let clientLocalhost = '/client/';
+    let production = '/';
+    const URL = server || localhost;
 
     await fetch(`${URL}/${id}`, {
         method: 'DELETE',
@@ -44,7 +46,7 @@ const deleteItem = async (id) => {
         .catch((e) => console.log(e.message, ' but whhyyyy'));
     //setTimeout(() => (window.location = '/client/'));
     alert('Successfully deleted!');
-    window.location = '/client/';
+    window.location = production;
 };
 
 const renderDOM = (arr, parent) => {

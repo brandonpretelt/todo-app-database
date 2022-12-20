@@ -6,7 +6,8 @@ const onSubmit = (event) => {
     let todoContent = data.get('todoContent');
     let category = data.get('category');
     let todoDescription = data.get('todoDescription');
-
+    let clientLocalhost = '/client/';
+    let production = '/';
     console.log(data);
     fetch(`${URL}/`, {
         method: 'POST',
@@ -35,7 +36,7 @@ const onSubmit = (event) => {
         .catch((e) => console.log(e.message, ' but whhyyyy'));
 
     // setTimeout(() => window.location.reload(), 350);
-    setTimeout(() => (window.location = '/client/'), 400);
+    setTimeout(() => (window.location = production), 400);
 };
 
 document.querySelector('form').addEventListener('submit', onSubmit);
