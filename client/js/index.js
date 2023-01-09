@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         getSelect.addEventListener('change', function () {
             let value = this.value;
             let filtered = data.filter((item) => item.category.includes(value));
+
             renderDOM(filtered, todosList);
         });
     }
